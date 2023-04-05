@@ -1,0 +1,389 @@
+/* GLOBAL VARIABLES */
+
+.html, body {
+  background-color: rgb(207, 208, 214)
+}
+
+:root {
+  --bordercolor: #4a7fd4;
+  --backcolor: #dee3fa;
+  --grey1: #e2e0e0;
+  --red1: #bd4a24;
+  --deepblue1: #2868dd;
+  --banner: #8ec583;
+  --transition: 0.1s;
+  --hovercolor: #46cc56;
+  --selectedcolor: #e3e7ba;
+}
+
+.App {
+  text-align: center;
+}
+.footer-div {
+  height: 200px;
+  background: rgb(133, 125, 125);
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.app-container {
+  width: 100%;
+  height: 500px;
+  margin: center;
+  padding: 0;
+}
+
+.prev {
+  background-color: rgb(66, 25, 25);
+  color: white;
+  padding-left: 7px;
+}
+.prev:hover{
+  background-color: rgb(148, 75, 75)
+}
+.next{
+  background-color: rgb(22, 99, 22);
+  color: white;
+  padding-left: 19px;
+}
+.next:hover{
+  background-color: rgb(54, 184, 54)
+}
+
+.controller-container {
+  background-color: rgb(193, 221, 230);
+  height: 70px;
+  width: 100%;
+  display: flex;
+}
+.controller-button-container {
+  display: flex;
+  gap: 30px;
+  margin: auto;
+}
+.controller-buttons {
+  height: 70px;
+  width: 70px;
+  border-radius: 100px;
+  display: flex;
+  gap: 30px;
+  line-height: 60px;
+}
+
+.review {
+  display: flex;
+  gap: 5px;
+  width: 550px;
+  margin: auto;
+  justify-content: center;
+}
+.review-container {
+  margin: auto;
+  margin-left: 10px;
+  margin-top: 50px;
+  justify-content: center;
+}
+
+.review-container-add1 {
+  opacity: 40%
+}
+
+.review-container-add2 {
+  opacity: 20%
+}
+
+.review-container-sub1 {
+  opacity: 40%
+}
+
+.review-container-sub2 {
+  opacity: 20%
+}
+
+.ourreviews {
+  margin: center;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  font-size: 25px;
+}
+
+.review-container {
+  background-color: rgba(113, 90, 240, 0.76);
+  border: solid rgba(47, 87, 110, 0.74) 4px;
+  border-radius: 25px;
+  width: 200px;
+  height: 150px;
+}
+.review-container{
+  line-height: 10px;
+  font-weight: bold;
+  
+}
+.button-container{
+  margin-left: 140px;
+  margin-top: -20px;
+  display: flex;
+  gap: 5px;
+}
+
+.button {
+  border-radius: 25px;
+  border: none;
+  height: 25px;
+  width: 25px;
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: white;
+  border: solid darkgray 1px;
+}
+
+.expand {
+  width: 150px;
+  height: 20px;
+  background-color: rgba(112, 90, 240, 0.514);
+  margin: auto;
+  text-align: center;
+  line-height: 17px;
+}
+.expand:hover {
+  background-color: rgb(206, 150, 66);
+}
+
+.age {
+  margin-top: -50px;
+  margin-left: 150px;
+  height: 40px;
+  width: 40px;
+  background-color: white;
+  border-radius: 25px;
+  text-align: center;
+  line-height: 38px;
+  border: solid black 2px;
+  font-size: 25px;
+}
+
+.profession {
+  font-size: 25px;
+}
+.hobby {
+  font-size: 25px;
+}
+
+
+
+.bigcont {
+
+  text-align: center;
+  margin: auto;
+}
+.guitar-container {
+  display: flex;
+}
+
+
+
+.guitarinfo-container {
+  background-color: rgb(238, 238, 238);
+  margin-left: 90px;
+  margin-right: 90px;
+}
+
+.guitarinfo-header {
+  text-align: center;
+  line-height: 10px;
+  padding-top: 1px;
+}
+
+.guitarinfo-main {
+  display: flex;
+}
+
+.guitarinfo-info {
+  margin-left: 15px;
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+
+
+/* menu app */
+
+.categories-container {
+  text-align: center;
+  margin: auto;
+}
+
+
+
+.filter-btn {
+  background-color: white;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  transition: var(--transition)
+}
+
+.filter-btn:hover {
+  background-color: rgb(219, 190, 190);
+}
+
+.section-container::-webkit-scrollbar {
+  width: 1em;
+}
+
+.section-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.section-container::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid rgb(54, 74, 94);
+}
+
+.section-container{
+  background-color: var(--backcolor);
+  border: solid var(--bordercolor) 4px;
+  width: 700px;
+  height: 600px;
+  display: flex;
+  flex-shrink: 0;
+  flex-flow: row wrap;
+  align-content: flex-start;
+  margin: auto;
+  border-radius: 15px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+
+
+.menu-desc{
+  margin: 0;
+  padding-left: 20px;
+  padding-right: 60px;
+}
+
+.menu-item{
+  background-color: var(--backcolor);
+  border-radius: 15px;
+  border: solid var(--bordercolor) 2px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.226);
+  width: 150px;
+  height: 100px;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  transition: var(--transition);
+  margin-top: 0;
+  margin-bottom: 0;
+  margin: 5px 5px 5px 5px
+}
+
+
+
+.menu-price {
+  font-size: 28px;
+  font-weight: 400;
+  color: rgb(26, 26, 26);
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  height: 52px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.menu-category {
+  margin: auto;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  height: 40px;
+  line-height: 29px;
+  color: white;
+  font-size: 15px;
+  letter-spacing: 1.6px;
+  text-align: center;
+  background-color: var(--deepblue1)
+
+}
+
+.menu-category:hover{
+  background-color: var(--hovercolor) !important;
+  opacity: 0.8
+}
+
+.shopping-container {
+  margin: auto;
+}
+
+.shopping-button {
+  height: 50px;
+  width: 100px;
+  border-radius: 20px;
+}
+.shopping-button:hover{
+  background-color: rgb(141, 192, 162);
+  opacity: 0.8
+}
+
+.appcolumn {
+  text-align: center;
+}
+
+.mene-title {
+  background-color: grey;
+  height: 50px;
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+}
+
+.myCollection-container {
+  background-color: rgb(126, 147, 192);
+  width: 600px;
+  margin: auto;
+  padding: 0px 20px 0px 20px;
+}
+
+.myCollection-collection {
+  color: white;
+  display: flex;
+}
+
+.myCollection-guitars {
+  display: flex;
+}
