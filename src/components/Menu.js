@@ -1,9 +1,11 @@
+/* eslint-disable no-lone-blocks */
 import React from 'react'
 import Menu_expanded from './Menu_expanded'
 
 export default function Menu({items, selectItems, addToCollection}) {
 
 const [expand, setExpand] = React.useState(false)
+const [collection, setCollection] = React.useState([])
 
 const expandStyle = {
   backgroundColor: expand ? "#e2e0e0" : "White",
@@ -19,8 +21,16 @@ const expandStyle = {
   }
 
 function addToCollectionButton(id, title){
-  return addToCollection(id, title)
+  if (collection.includes(id)){
+    console.log("Already in collection")
+  } else {
+    setCollection(collection => [...collection, id])
+    return addToCollection(id, title)
+  }
+
 }
+
+//MENU LAYOUT
   return (
     
     <div className="section-container">

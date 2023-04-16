@@ -31,9 +31,6 @@ const [filter, setFilter] = React.useState([])
     }
 
 
-
-  
-
   //const newItems = Menu_data.filter((item)=> item.category === category
   //const myItems = Menu_data.filter((item) => item.id === myCollection)
 

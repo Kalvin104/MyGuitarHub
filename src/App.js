@@ -68,7 +68,6 @@ const selectItems = (id, expand) => {
   } else {
     const newItems = Menu_data.filter((item) => item.id === id)
     setMenuItems(newItems)
-    console.log("selected", id)
   }
 }
 
