@@ -1,31 +1,34 @@
 /* eslint-disable no-lone-blocks */
 import React from 'react'
-import Menu_expanded from './Menu_expanded'
 
-export default function Menu({items, selectItems, addToCollection}) {
+export default function Menu({items, selectItems, addToCollection, myCollection}) {
 
-const [expand, setExpand] = React.useState(false)
-const [collection, setCollection] = React.useState([])
-
-const expandStyle = {
+  const [expand, setExpand] = React.useState(false)
+  const [collection, setCollection] = React.useState([])
+  
+  const expandStyle = {
   backgroundColor: expand ? "#e2e0e0" : "White",
   height: expand ? "597px" : "140px",
   width: expand ? "100%" : "150px",
   margin: expand ? "auto" : ""
-}
-
+  }
 
   function expandBox(id){
     setExpand(prevExpand => !prevExpand)
     selectItems(id, expand)
   }
 
-function addToCollectionButton(id, title){
-  if (collection.includes(id)){
-    console.log("Already in collection")
-  } else {
-    setCollection(collection => [...collection, id])
-    return addToCollection(id, title)
+  let itemsArray = localStorage.getItem('guitars') ?
+  JSON.parse(localStorage.getItem('guitars')) : [];
+
+  function addToCollectionButton(id, title){
+    if (myCollection.includes(id)){
+      console.log("Already in collection")
+    } else {
+      itemsArray.push(title)
+      localStorage.setItem('guitars', JSON.stringify(itemsArray))
+      setCollection(collection => [...collection, id])
+      return addToCollection(id, title)
   }
 
 }
@@ -36,7 +39,7 @@ function addToCollectionButton(id, title){
     <div className="section-container">
       {items.map((menuItem)=>{
 
-        const {id, title, category, price, desc, img, year, brand} = menuItem
+        const {id, title, category, price, desc, img, brand} = menuItem
         {return <article 
         key={id} 
         className="menu-item" 

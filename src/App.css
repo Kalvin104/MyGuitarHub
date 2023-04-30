@@ -1,19 +1,20 @@
 /* GLOBAL VARIABLES */
 
 .html, body {
-  background-color: rgb(207, 208, 214)
+  background-color: rgb(202, 213, 227)
 }
 
 :root {
-  --bordercolor: #4a7fd4;
+  --bordercolor: #5875a4;
   --backcolor: #dee3fa;
   --grey1: #e2e0e0;
   --red1: #bd4a24;
-  --deepblue1: #2868dd;
+  --deepblue1: #d5cd75;
   --banner: #8ec583;
   --transition: 0.1s;
   --hovercolor: #46cc56;
-  --selectedcolor: #e3e7ba;
+  --selectedcolor: #cdd1a0;
+  --header: #000000;
 }
 
 .App {
@@ -277,8 +278,8 @@
 
 .section-container{
   background-color: var(--backcolor);
-  border: solid var(--bordercolor) 4px;
-  width: 700px;
+  border: solid var(--bordercolor) 1px;
+  width: 85%;
   height: 600px;
   display: flex;
   flex-shrink: 0;
@@ -374,16 +375,24 @@
 
 .myCollection-container {
   background-color: rgb(126, 147, 192);
-  width: 600px;
-  margin: auto;
+  width: 400px;
+  margin-left: 7.5%;
+  border-radius: 15px;
   padding: 0px 20px 0px 20px;
 }
 
 .myCollection-collection {
   color: white;
-  display: flex;
 }
 
 .myCollection-guitars {
-  display: flex;
+  font-size: 110%;
 }
+
+.myCartPanel {
+  -webkit-animation: slide 0.5s forwards;
+  -webkit-animation-delay: 2s;
+  animation: slide 0.5s forwards;
+  animation-delay: 2s;
+}
+

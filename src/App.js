@@ -1,50 +1,23 @@
-
 import React from 'react'
 import './App.css';
-import './stylesheets/qanda.css'
-
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Collection from './components/Collection';
-
-
-import Review from './Review'
-import Controller from './Controller';
-import people from './people'
-import GuitarInfo from './GuitarInfo';
-
-//QANDA APP
-import Qanda from './components/Qanda';
-import Qanda_data from './components/Qanda_data';
-
 //MENU APP
 import Menu from './components/Menu';
 import Menu_data from './components/Menu_data';
 import Categories from './components/Categories';
-
 //CART APP
 import Cart from './components/Cart';
 
 function App() {
 
-  //Q AND A APP
-const [questions, setQuestions] = React.useState(Qanda_data)
-const questionElements = questions.map(question => (
-  <Qanda 
-  key={question.id}
-  {...question}
-  />
-))
-
 //MENU APP
 const allCategories = ["all", ...new Set(Menu_data.map((item) => item.category))]
 const [menuItems, setMenuItems] = React.useState(Menu_data)
 const [categories, setCategories] = React.useState(allCategories)
-
 const allFiltered = [...new Set(Menu_data.map((item) => item.id))]
 const [filtered, setFiltered] = React.useState(allFiltered)
-
-//MENU APP END
 
 //CATEGORY APP
 const filterItems = (category) => {
@@ -54,12 +27,19 @@ const filterItems = (category) => {
   setMenuItems(Menu_data)
   }
 }
-const [myCollection, setMyCollection] = React.useState([])
+const [myCollection, setMyCollection] = React.useState(() => {
+  //Getting stored collection from localStorage
+  const saved = localStorage.getItem("guitars")
+  const initialValue = JSON.parse(saved)
+  console.log(initialValue)
+  return initialValue || []
+})
+  
 const [myCollectionTitle, setMyCollectionTitle] = React.useState([])
 const [myCollectionBrand, setMyCollectionBrand] = React.useState([])
 const [myCollectionPrice, setMyCollectionPrice] = React.useState([])
 
-const [filteredCollection, setFilteredCollection] = React.useState([])
+
 
 const selectItems = (id, expand) => {
   if (expand === true) {
@@ -78,36 +58,34 @@ const addToCollection = (id, title, brand, price) => {
   setMyCollectionPrice(oldCollectionPrice => [...oldCollectionPrice, price])
 }
 
-//CATEGORY APP END
-const [index, setIndex] = React.useState(0)
-const checkNumber = (number) => {
-  if(number > people.length - 1){
-  return 0
-  }
-  if(number < 0){
-      return people.length - 1
-  }
-  return number
-}
-function nextPerson(){
-  setIndex(prevIndex => checkNumber(prevIndex + 1))
-  return index
-}
-function prevPerson(){
-  setIndex(prevIndex => checkNumber(prevIndex - 1))
-  return index
+const [clear, setClear] = React.useState(false)
+
+function clearCollection(){
+  localStorage.removeItem("guitars")
+  setMyCollection([])
+  setClear(prevClear => !prevClear)
+  setMenuItems(Menu_data)
+  console.log("myCollection after clear: ", myCollection)
 }
 
+function clearCollectionMenu(){
+  console.log("clear collection menu selected")
+}
 
 return (
     <main>
-      <Header />
+      <Header 
+      myCollection={myCollection}
+      myCollectionBrand={myCollectionBrand}
+      myCollectionPrice={myCollectionPrice}
+      myCollectionTitle={myCollectionTitle}
+      />
       <div className="appcolumn">
-
+        <br></br>
+      <p>Select your guitars and give them a review!</p>
+        <br></br>
       <div>
         <div className="categories-container">
-          <h2>Guitar Categories</h2>
-        {/* {questionElements} */}
         <Categories 
         categories={categories}
         filterItems={filterItems}
@@ -118,16 +96,21 @@ return (
         items={menuItems}
         selectItems={selectItems}
         addToCollection={addToCollection}
+        clearCollectionMenu={clearCollectionMenu}
+        myCollection={myCollection}
         />
+        
         <Collection 
         myCollection={myCollection}
         myCollectionTitle={myCollectionTitle}
         myCollectionBrand={myCollectionBrand}
         myCollectionPrice={myCollectionPrice}
-
         filtered={filtered}
+        setClear={setClear}
+        clear={clear}
+        clearCollection={clearCollection}
       /> 
-
+      <button onClick={() => {clearCollection(); clearCollectionMenu()}}> Clear Collection</button>
       </div>
       
       </div>
@@ -135,26 +118,7 @@ return (
         <Cart />
       </div>
         <Footer />
-
       <div>
-      {/* <div className="app-container">
-        <div className="ourreviews">
-          <h2>Famous Guitarists Guitars</h2>
-
-        </div>
-        <Controller 
-        nextPerson={nextPerson}
-        prevPerson={prevPerson}
-        />
-        <Review 
-        index={index}
-        />
-        <GuitarInfo 
-        index={index}
-        />
-      </div>
-      <br></br> */}
-
       </div>
  
     </main>
