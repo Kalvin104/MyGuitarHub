@@ -1,11 +1,13 @@
 /* eslint-disable no-lone-blocks */
 import React from 'react'
+import Review from './Review'
+import ReviewList from './ReviewList'
 
 export default function Menu({items, selectItems, addToCollection, myCollection}) {
 
   const [expand, setExpand] = React.useState(false)
   const [collection, setCollection] = React.useState([])
-  
+
   const expandStyle = {
   backgroundColor: expand ? "#e2e0e0" : "White",
   height: expand ? "597px" : "140px",
@@ -73,6 +75,7 @@ export default function Menu({items, selectItems, addToCollection, myCollection}
             <button className="shopping-button" onClick={() => addToCollectionButton(id, title, brand, price)}>Add to Collection</button>
             <button className="shopping-button">Add Review</button>
           </div>
+          <Review />
          </div>
          }
         </article>}

@@ -1,17 +1,17 @@
 /* GLOBAL VARIABLES */
 
 .html, body {
-  background-color: rgb(202, 213, 227)
+  background-color: rgb(240, 240, 240)
 }
 
 :root {
-  --bordercolor: #5875a4;
+  --bordercolor: #a0a0a0;
   --backcolor: #dee3fa;
   --grey1: #e2e0e0;
   --red1: #bd4a24;
   --deepblue1: #d5cd75;
   --banner: #8ec583;
-  --transition: 0.1s;
+  --transition: 0.05s;
   --hovercolor: #46cc56;
   --selectedcolor: #cdd1a0;
   --header: #000000;
@@ -279,8 +279,8 @@
 .section-container{
   background-color: var(--backcolor);
   border: solid var(--bordercolor) 1px;
-  width: 85%;
-  height: 600px;
+  width: 100%;
+  height: 1300px;
   display: flex;
   flex-shrink: 0;
   flex-flow: row wrap;
@@ -374,7 +374,7 @@
 }
 
 .myCollection-container {
-  background-color: rgb(126, 147, 192);
+  background-color: rgb(18, 18, 18);
   width: 400px;
   margin-left: 7.5%;
   border-radius: 15px;

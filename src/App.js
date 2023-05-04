@@ -82,7 +82,7 @@ return (
       />
       <div className="appcolumn">
         <br></br>
-      <p>Select your guitars and give them a review!</p>
+      <p>Select your favourite guitars and give them a review!</p>
         <br></br>
       <div>
         <div className="categories-container">
