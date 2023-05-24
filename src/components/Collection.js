@@ -2,7 +2,7 @@ import React from 'react'
 import Menu_data from './Menu_data'
 
 
-export default function Collection({myCollection, filtered, myCollectionTitle, clearCollection}) {
+export default function Collection({ myCollection, filtered, myCollectionTitle, clearCollection}) {
 
 const [showMyCollection, setMyShowCollection] = React.useState(true)
 
@@ -24,7 +24,7 @@ const [showMyCollection, setMyShowCollection] = React.useState(true)
 const rows = []
 
   for (let i = 0; i < myCollection.length; i++){
-  rows.push(<p>{myCollectionTitle[i]}</p>)
+  rows.push(<p id={[i]}>{myCollectionTitle[i]}</p>)
     
   }
 
@@ -33,13 +33,13 @@ const rows = []
   return (
     <div>
         <h2 style={{marginLeft: "-70%"}}>My Collection</h2>
-        <div className="myCollection-container">
+        {/* <div className="myCollection-container">
           <button onClick={showCollection}>{showMyCollection ? "Hide" : "Show"}</button>
           <div className="myCollection-collection">
             <h3 className="myCollection-guitars">
               {showMyCollection && rows}</h3>
           </div>
-        </div>
+        </div> */}
         
     </div>
   )

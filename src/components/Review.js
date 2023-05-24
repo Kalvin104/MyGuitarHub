@@ -2,22 +2,15 @@ import React from 'react'
 import ReviewForm from './ReviewForm'
 import ReviewList from './ReviewList'
 
-export default function Review() {
-
-    const [reviews, setReviews] = React.useState([])
-    const [form, setForm] = React.useState({review: "", id: null})
+export default function Review(handleCheckGuitar, handleSubmitReview, guitarReviews) {
 
   return (
     <div>
-        <ReviewForm 
-        form={form}
-        reviews={reviews}
-        setForm={setForm}
-        setReviews={setReviews}
-        />
-        <ReviewList
-        reviews={reviews}
-        />
+          <ReviewList 
+            guitarReviews={guitarReviews}
+            handleCheckGuitar={handleCheckGuitar}
+            handleSubmitReview={handleSubmitReview}
+          />
     </div>
   )
 }

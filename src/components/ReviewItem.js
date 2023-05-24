@@ -1,11 +1,16 @@
 import React from 'react'
 
-const ReviewItem = ({review}) => {
-  return (
-    <div>
-        <p>{review.review}</p>
+const ReviewItem = ({review, handleCheckGuitar, selectedItem}) => {
 
-    </div>
+  return (
+    <li className="item" key={review.id} style={{listStyle: "none"}}>
+      <label
+        onDoubleClick={() => handleCheckGuitar(review.id)}
+      ></label>
+      
+      {review.review}
+      
+    </li>
   )
 }
 

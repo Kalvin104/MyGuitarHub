@@ -1,15 +1,31 @@
 import React from 'react'
 import ReviewItem from './ReviewItem'
 
-export default function ReviewList({reviews}) {
+const ReviewList = ({guitarReviews, handleCheckGuitar, handleSubmitReview, selectedItem}) => {
+
   return (
-    <div style={{position: "relative"}}>
-        <h3>Review List:</h3>
-        {reviews.map((review) => (
-             <ReviewItem review={review} />
-        ))}
+     <div>
+      <div style={{
+        position: "relative", 
+        height: "100px",
+        marginTop: "5px",
+        marginLeft: "-500px"
+        }}>
+        <ul>
+          {guitarReviews && guitarReviews.map((review) => (
+              <ReviewItem
+              selectedItem={selectedItem}
+              key={review.id}
+              review={review} 
+              handleCheckGuitar={handleCheckGuitar}
+              handleSubmitReview={handleSubmitReview}
+              />
+          ))}
+        </ul>
+      </div>
 
-
-    </div>
+     </div>
   )
 }
+
+export default ReviewList

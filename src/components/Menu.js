@@ -1,18 +1,26 @@
-/* eslint-disable no-lone-blocks */
 import React from 'react'
-import Review from './Review'
+import ReviewAdd from './ReviewAdd'
 import ReviewList from './ReviewList'
 
-export default function Menu({items, selectItems, addToCollection, myCollection}) {
+export default function Menu({items, selectItems, selectedItem, addToCollection, myCollection, handleCheckGuitar, handleSubmitReview, guitarReviews, setNewGuitarReview, newGuitarReview}) {
 
   const [expand, setExpand] = React.useState(false)
+  const [showReviewInput, setShowReviewInput] = React.useState(false)
   const [collection, setCollection] = React.useState([])
+  const [toggleCollectionButton, setToggleCollectionButton] = React.useState(false)
+
+  const expandSection = {
+    display: expand ? "" : "flex",
+    height: expand ? "1000px" : ""
+  }
 
   const expandStyle = {
-  backgroundColor: expand ? "#e2e0e0" : "White",
-  height: expand ? "597px" : "140px",
-  width: expand ? "100%" : "150px",
+  backgroundColor: expand ? "transparent" : "White",
+  height: expand ? "485px" : "485px",
+  width: expand ? "100%" : "230px",
   margin: expand ? "auto" : ""
+
+
   }
 
   function expandBox(id){
@@ -25,20 +33,23 @@ export default function Menu({items, selectItems, addToCollection, myCollection}
 
   function addToCollectionButton(id, title){
     if (myCollection.includes(id)){
-      console.log("Already in collection")
+      setToggleCollectionButton(prevToggle => !prevToggle)
     } else {
       itemsArray.push(title)
       localStorage.setItem('guitars', JSON.stringify(itemsArray))
       setCollection(collection => [...collection, id])
+      setToggleCollectionButton(prevToggle => !prevToggle)
       return addToCollection(id, title)
   }
 
 }
 
-//MENU LAYOUT
+ function toggleAddReview(){
+  setShowReviewInput(prevToggle => !prevToggle)
+ }
   return (
     
-    <div className="section-container">
+    <div className="section-container" style={expandSection}>
       {items.map((menuItem)=>{
 
         const {id, title, category, price, desc, img, brand} = menuItem
@@ -49,7 +60,7 @@ export default function Menu({items, selectItems, addToCollection, myCollection}
         >
           <h3 
           className="menu-category"
-          onClick={() => expandBox(id)}
+          onClick={() =>  expandBox(id)}
           style={expand ? {backgroundColor: "#46cc56"} : {backgroundColor: "#2868dd"}}
           >{category}</h3>
           {<p  
@@ -61,6 +72,7 @@ export default function Menu({items, selectItems, addToCollection, myCollection}
           </p>}
           
           <h4 className="menu-price">£{price}</h4>
+          <img src={`./assets/${img}`} alt="" style={{ height: "330px", width: "210px", objectFit: "cover"}}></img>
           {expand && 
           <div>
             <div className="expand-container" style={{display: "flex"}}>
@@ -68,14 +80,36 @@ export default function Menu({items, selectItems, addToCollection, myCollection}
                <p>{desc}</p>
               
                </div>
-           <img src={`./assets/${img}`} alt="" style={{height: "250px", width: "140px"}}></img>
           </div>
           <div className="shopping-container">
-            <button className="shopping-button">Add to Cart</button>
-            <button className="shopping-button" onClick={() => addToCollectionButton(id, title, brand, price)}>Add to Collection</button>
-            <button className="shopping-button">Add Review</button>
+            <button 
+            className="shopping-button" 
+            onClick={() => addToCollectionButton(id, title, brand, price)}
+            style={toggleCollectionButton ? {backgroundColor: "#bd4a24"} : {backgroundColor: "#8ec583"}}
+            >
+              {toggleCollectionButton ? "Remove from Collection" : "Add to Collection"}</button>
           </div>
-          <Review />
+          <button className='shopping-button' onClick={() => toggleAddReview()}>Add a Review!</button>
+          
+          {showReviewInput &&
+          <ReviewAdd 
+          newGuitarReview={newGuitarReview}
+          setNewGuitarReview={setNewGuitarReview}
+          handleSubmitReview={handleSubmitReview}
+          selectedItem={selectedItem}
+          /> }
+          {showReviewInput && <h3 style={{marginLeft: "-350px", textDecoration: "underline"}}>Reviews:</h3>}
+          {guitarReviews.length ? ( <ReviewList
+          
+            guitarReviews={guitarReviews.filter((review) => review.selectedItem === selectedItem)}
+            handleCheckGuitar={handleCheckGuitar}
+            handleSubmitReview={handleSubmitReview}
+            selectedItem={selectedItem}
+          
+          />
+          ) : (
+            <p>No Reviews - Add one!</p>
+          )}
          </div>
          }
         </article>}
