@@ -163,11 +163,11 @@ return (
       </div>
       <div style={{textAlign: "center"}}>      
         {/* <Cart /> */}
+
+        
+
       </div>
-        <Footer />
-      <div>
-      </div>
- 
+      {/* <Footer /> */}
     </main>
   )
 }

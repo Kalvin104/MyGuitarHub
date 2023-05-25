@@ -11,7 +11,8 @@ export default function Menu({items, selectItems, selectedItem, addToCollection,
 
   const expandSection = {
     display: expand ? "" : "flex",
-    height: expand ? "1000px" : ""
+    height: expand ? "1000px" : "",
+    overflowX: expand ? "hidden" : "auto"
   }
 
   const expandStyle = {
@@ -72,35 +73,47 @@ export default function Menu({items, selectItems, selectedItem, addToCollection,
           </p>}
           
           <h4 className="menu-price">£{price}</h4>
-          <img src={`./assets/${img}`} alt="" style={{ height: "330px", width: "210px", objectFit: "cover"}}></img>
+          {!expand && <img src={`./assets/${img}`} alt="" style={{ height: "330px", width: "210px", objectFit: "cover"}}></img>}
           {expand && 
           <div>
             <div className="expand-container" style={{display: "flex"}}>
+            <img src={`./assets/${img}`} alt="" style={{ height: "500px", width: "270px", objectFit: "fill"}}></img>
               <div className="menu-desc">
-               <p>{desc}</p>
+               <p style={{padding: "0px", margin: "0px", backgroundColor: "white", height: "300px"}}>{desc}</p>
+
+                <div className="shopping-container">
+                  <button 
+                    className="shopping-button" 
+                    onClick={() => addToCollectionButton(id, title, brand, price)}
+                    style={toggleCollectionButton ? {backgroundColor: "#bd4a24"} : {backgroundColor: "#8ec583"}}
+                  >
+                    {toggleCollectionButton ? "Remove from Collection" : "Add to Collection"}</button>
+                  <button 
+                    className='shopping-button' 
+                    onClick={() => toggleAddReview()}
+                    style={showReviewInput ? {backgroundColor: "#bd4a24"} : {backgroundColor: "#8ec583"}}
+                    >
+                    
+                    {showReviewInput ? "Hide Review Input" : "Add a Review!"}</button>
+                </div>
+                  {showReviewInput &&
+                  <ReviewAdd 
+                  newGuitarReview={newGuitarReview}
+                  setNewGuitarReview={setNewGuitarReview}
+                  handleSubmitReview={handleSubmitReview}
+                  selectedItem={selectedItem}
+                  /> }
+              </div>
               
-               </div>
           </div>
-          <div className="shopping-container">
-            <button 
-            className="shopping-button" 
-            onClick={() => addToCollectionButton(id, title, brand, price)}
-            style={toggleCollectionButton ? {backgroundColor: "#bd4a24"} : {backgroundColor: "#8ec583"}}
-            >
-              {toggleCollectionButton ? "Remove from Collection" : "Add to Collection"}</button>
-          </div>
-          <button className='shopping-button' onClick={() => toggleAddReview()}>Add a Review!</button>
           
-          {showReviewInput &&
-          <ReviewAdd 
-          newGuitarReview={newGuitarReview}
-          setNewGuitarReview={setNewGuitarReview}
-          handleSubmitReview={handleSubmitReview}
-          selectedItem={selectedItem}
-          /> }
-          {showReviewInput && <h3 style={{marginLeft: "-350px", textDecoration: "underline"}}>Reviews:</h3>}
-          {guitarReviews.length ? ( <ReviewList
           
+          
+          
+          <h3>Reviews:</h3>
+          { guitarReviews.length ?  ( 
+          
+          <ReviewList
             guitarReviews={guitarReviews.filter((review) => review.selectedItem === selectedItem)}
             handleCheckGuitar={handleCheckGuitar}
             handleSubmitReview={handleSubmitReview}

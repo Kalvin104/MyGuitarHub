@@ -31,7 +31,7 @@ export const ReviewForm = ({key, form, reviews, setForm, setReviews}) => {
           id="review"
           name="review"
           onChange={handleChange}
-          style={{height: "65px", width: "780px"}}
+          style={{height: "65px", width: "780px", marginLeft: "-150px"}}
           
         />
         <br></br>

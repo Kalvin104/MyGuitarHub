@@ -8,6 +8,7 @@ const ReviewAdd = ({newGuitarReview, selectedItem, setNewGuitarReview, handleSub
     <form className='addForm' onSubmit={handleSubmitReview}>
         <label htmlFor='addItem'></label>
         <input
+        style={{marginTop: "10px", height: "50px", width: "400px", fontSize: "17px", marginLeft: "-75px"}}
         autoFocus
         id='addItem'
         type='text'
@@ -18,7 +19,7 @@ const ReviewAdd = ({newGuitarReview, selectedItem, setNewGuitarReview, handleSub
         ></input>
         <button
             type='submit'
-            style={{height: "23px", width: "70px"}}
+            style={{height: "50px", width: "40px"}}
             aria-label='Add Item'
         >+</button>
     </form>

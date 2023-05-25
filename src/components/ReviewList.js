@@ -4,12 +4,11 @@ import ReviewItem from './ReviewItem'
 const ReviewList = ({guitarReviews, handleCheckGuitar, handleSubmitReview, selectedItem}) => {
 
   return (
-     <div>
+
       <div style={{
-        position: "relative", 
+        position: "relative",
         height: "100px",
-        marginTop: "5px",
-        marginLeft: "-500px"
+        marginTop: "5px"
         }}>
         <ul>
           {guitarReviews && guitarReviews.map((review) => (
@@ -24,7 +23,7 @@ const ReviewList = ({guitarReviews, handleCheckGuitar, handleSubmitReview, selec
         </ul>
       </div>
 
-     </div>
+
   )
 }
 

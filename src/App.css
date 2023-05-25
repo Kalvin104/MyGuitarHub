@@ -1,7 +1,10 @@
 
 
 .html, body {
-  background-color: rgb(240, 240, 240)
+  background-color: rgb(240, 240, 240);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
@@ -11,7 +14,7 @@
   --red1: #bd4a24;
   --deepblue1: #d5cd75;
   --banner: #8ec583;
-  --transition: 0.05s;
+  --transition: 0.00s;
   --hovercolor: #46cc56;
   --selectedcolor: #cdd1a0;
   --header: #000000;
@@ -20,10 +23,7 @@
 .App {
   text-align: center;
 }
-.footer-div {
-  height: 200px;
-  background: rgb(133, 125, 125);
-}
+
 
 .App-logo {
   height: 40vmin;
@@ -278,16 +278,16 @@
 
 .section-container{
   background-color: var(--backcolor);
-  border: solid var(--bordercolor) 1px;
-  width: 100%;
+  /* width: 100%; */
   /* height: 510px; */
   /* display: flex; */
   /* flex-shrink: 0; */
   align-content: flex-start;
   margin: auto;
-  border-radius: 15px;
   /* overflow: hidden; */
   overflow-x: scroll;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 
@@ -346,14 +346,17 @@
 }
 
 .shopping-container {
-  margin: auto;
+  position: relative;
+  margin-top: 10px;
+  gap: 10px;
+  display: flex;
 }
 
 .shopping-button {
   height: 60px;
-  width: 100px;
-  border-radius: 20px;
-  
+  width: 130px;
+  border-radius: 5px;
+
 }
 .shopping-button:hover{
   background-color: rgb(141, 192, 162);
