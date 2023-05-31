@@ -53,7 +53,6 @@ const selectItems = (id, expand) => {
     setMenuItems(newItems)
     setSelectedItem(null)
   } else {
-    
     const newItems = Menu_data.filter((item) => item.id === id)
     setMenuItems(newItems)
     setSelectedItem(id)
@@ -105,7 +104,7 @@ const handleSubmitReview = (e) => {
 }
 
 return (
-    <main>
+    <main id="main">
       <Header 
       myCollection={myCollection}
       myCollectionBrand={myCollectionBrand}
@@ -142,11 +141,8 @@ return (
         <br></br>
         <br></br>
         <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <Collection 
+        
+      <Collection 
         key={myCollection}
         myCollection={myCollection}
         myCollectionTitle={myCollectionTitle}
@@ -157,7 +153,7 @@ return (
         clear={clear}
         clearCollection={clearCollection}
       /> 
-      <button onClick={() => {clearCollection(); clearCollectionMenu()}}> Clear Collectiona</button>
+      <button onClick={() => {clearCollection(); clearCollectionMenu()}}> Clear Collection</button>
       </div>
       
       </div>
@@ -167,6 +163,13 @@ return (
         
 
       </div>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
       {/* <Footer /> */}
     </main>
   )
