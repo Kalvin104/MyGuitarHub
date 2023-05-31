@@ -16,7 +16,7 @@ const [showMyCollection, setMyShowCollection] = React.useState(true)
 
   return (
     <div>
-        <h2 style={{marginLeft: "-70%"}}>My Collection</h2>
+        <h2 style={{marginLeft: "auto"}}>My Collection</h2>
 
         <div className="myCollection-container">
 

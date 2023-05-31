@@ -380,10 +380,13 @@
 
 .myCollection-container {
   background-color: rgb(18, 18, 18);
-  width: 400px;
-  margin-left: 7.5%;
   border-radius: 15px;
-  padding: 0px 20px 0px 20px;
+  align-content: flex-start;
+  margin: auto;
+  /* overflow: hidden; */
+  overflow-x: scroll;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 .myCollection-collection {
