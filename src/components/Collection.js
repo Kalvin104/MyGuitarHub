@@ -7,39 +7,34 @@ export default function Collection({ myCollection, filtered, myCollectionTitle, 
 const [showMyCollection, setMyShowCollection] = React.useState(true)
 
 
-  //const filtered = allMyItems.filter((item) => item.id contain)
   function showCollection(){
     setMyShowCollection(prevClick => !prevClick)
-    for (let i = 0; i < myCollection.length; i++){
-    console.log("loop", myCollection[i])
-    const x = Menu_data.filter((item) => item.id === myCollection[i])
-    console.log("x = ", x)
   }
-}
-
 
     myCollectionTitle = JSON.parse(localStorage.getItem('guitars'))
-
-
-const rows = []
-
-  for (let i = 0; i < myCollection.length; i++){
-  rows.push(<p id={[i]}>{myCollectionTitle[i]}</p>)
-    
-  }
-
-
+    let theCollection = Menu_data.filter((item) => myCollection.includes(item.id))
 
   return (
     <div>
         <h2 style={{marginLeft: "-70%"}}>My Collection</h2>
-        {/* <div className="myCollection-container">
+
+        <div className="myCollection-container">
+
           <button onClick={showCollection}>{showMyCollection ? "Hide" : "Show"}</button>
-          <div className="myCollection-collection">
-            <h3 className="myCollection-guitars">
-              {showMyCollection && rows}</h3>
-          </div>
-        </div> */}
+
+          {showMyCollection && <div className="myCollection-collection">
+            
+            {theCollection.map((menuItem)=> {
+
+              const {id, title, category, img, brand, year} = menuItem
+              {return (
+              <div key={id}>
+                {brand} - {category} ({year}) {title}
+                <img src={`./assets/${img}`}></img>
+              </div> )}
+            })}
+          </div>}
+        </div>
         
     </div>
   )

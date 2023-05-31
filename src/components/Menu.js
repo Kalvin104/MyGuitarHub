@@ -7,7 +7,9 @@ export default function Menu({items, selectItems, selectedItem, addToCollection,
   const [expand, setExpand] = React.useState(false)
   const [showReviewInput, setShowReviewInput] = React.useState(false)
   const [collection, setCollection] = React.useState([])
-  const [toggleCollectionButton, setToggleCollectionButton] = React.useState(false)
+  const [toggleCollectionButton, setToggleCollectionButton] = React.useState()
+
+
 
   const expandSection = {
     display: expand ? "" : "flex",
@@ -27,20 +29,38 @@ export default function Menu({items, selectItems, selectedItem, addToCollection,
   function expandBox(id){
     setExpand(prevExpand => !prevExpand)
     selectItems(id, expand)
+    menuItemRender(id)
   }
 
   let itemsArray = localStorage.getItem('guitars') ?
   JSON.parse(localStorage.getItem('guitars')) : [];
 
-  function addToCollectionButton(id, title){
-    if (myCollection.includes(id)){
+  function collectionUpdateLocalStorage(){
+    localStorage.setItem('guitars', JSON.stringify(itemsArray))
+  }
+
+  function removeFromCollection(id){
+    const objWithIdIndex = itemsArray.findIndex((item) => item === id)
+    if (objWithIdIndex > -1){
+      console.log("splicing", objWithIdIndex + " with the id " + id)
+      itemsArray.splice(objWithIdIndex, 1)
+      myCollection.splice(objWithIdIndex, 1)
+      collectionUpdateLocalStorage()
+    }
+  }
+
+  function addToCollectionButton(id, title, brand, img, category, year){
+    console.log("itemsArray", itemsArray)
+    console.log("myCollection", myCollection)
+    if (itemsArray.includes(id)){
       setToggleCollectionButton(prevToggle => !prevToggle)
+      removeFromCollection(id)
     } else {
-      itemsArray.push(title)
-      localStorage.setItem('guitars', JSON.stringify(itemsArray))
+      itemsArray.push(id)
+      collectionUpdateLocalStorage();
       setCollection(collection => [...collection, id])
       setToggleCollectionButton(prevToggle => !prevToggle)
-      return addToCollection(id, title)
+      return addToCollection(itemsArray)
   }
 
 }
@@ -48,12 +68,23 @@ export default function Menu({items, selectItems, selectedItem, addToCollection,
  function toggleAddReview(){
   setShowReviewInput(prevToggle => !prevToggle)
  }
+
+
+function menuItemRender(id){
+  if (itemsArray.includes(id)){
+    setToggleCollectionButton(true)
+  } else {
+    setToggleCollectionButton(false)
+  }
+}
+
+
   return (
     
     <div className="section-container" style={expandSection}>
       {items.map((menuItem)=>{
 
-        const {id, title, category, price, desc, img, brand} = menuItem
+        const {id, title, category, price, desc, img, brand, year} = menuItem
         {return <article 
         key={id} 
         className="menu-item" 
@@ -84,7 +115,7 @@ export default function Menu({items, selectItems, selectedItem, addToCollection,
                 <div className="shopping-container">
                   <button 
                     className="shopping-button" 
-                    onClick={() => addToCollectionButton(id, title, brand, price)}
+                    onClick={() => addToCollectionButton(id, title, brand, img, category, year)}
                     style={toggleCollectionButton ? {backgroundColor: "#bd4a24"} : {backgroundColor: "#8ec583"}}
                   >
                     {toggleCollectionButton ? "Remove from Collection" : "Add to Collection"}</button>

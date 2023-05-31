@@ -8,7 +8,15 @@ const ReviewAdd = ({newGuitarReview, selectedItem, setNewGuitarReview, handleSub
     <form className='addForm' onSubmit={handleSubmitReview}>
         <label htmlFor='addItem'></label>
         <input
-        style={{marginTop: "10px", height: "50px", width: "400px", fontSize: "17px", marginLeft: "-75px"}}
+        style={{
+          marginTop: "10px", 
+          height: "50px", 
+          width: "400px", 
+          fontSize: "17px",
+          position: "relative",
+          padding: "0px",
+          marginLeft: "auto"
+        }}
         autoFocus
         id='addItem'
         type='text'

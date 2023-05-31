@@ -2,9 +2,12 @@
 
 .html, body {
   background-color: rgb(240, 240, 240);
-  min-height: 100vh;
   margin: 0;
   padding: 0;
+}
+
+#main {
+  min-height: 100vh
 }
 
 :root {
