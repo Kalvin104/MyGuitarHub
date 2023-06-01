@@ -1,26 +1,19 @@
-
-
 import React from 'react'
 import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Collection from './components/Collection';
-//MENU APP
 import Menu from './components/Menu';
 import Menu_data from './components/Menu_data';
 import Categories from './components/Categories';
-//CART APP
-import Cart from './components/Cart';
-
-
-//import SearchItem from './components/SearchItem';
+import AddNewGuitar from './components/AddNewGuitar';
 
 function App() {
 
 const [selectedItem, setSelectedItem] = React.useState(null)
 //MENU APP
 const allCategories = ["all", ...new Set(Menu_data.map((item) => item.category))]
-const [menuItems, setMenuItems] = React.useState(Menu_data)
+const [menuItems, setMenuItems] = React.useState(JSON.parse(localStorage.getItem('menuItems')) || Menu_data)
 const [categories, setCategories] = React.useState(allCategories)
 const allFiltered = [...new Set(Menu_data.map((item) => item.id))]
 const [filtered, setFiltered] = React.useState(allFiltered)
@@ -29,10 +22,10 @@ const [filtered, setFiltered] = React.useState(allFiltered)
 const filterItems = (category) => {
   if (selectedItem === null) {
     if (category !== "all") 
-      {const newItems = Menu_data.filter((item)=> item.category === category)
+      {const newItems = menuItems.filter((item)=> item.category === category)
       setMenuItems(newItems)} else {
         category = "all"
-      setMenuItems(Menu_data)
+      setMenuItems(JSON.parse(localStorage.getItem('menuItems')))
     }
   }
 }
@@ -49,11 +42,10 @@ const [myCollectionPrice, setMyCollectionPrice] = React.useState([])
 
 const selectItems = (id, expand) => {
   if (expand === true) {
-    const newItems = Menu_data
-    setMenuItems(newItems)
+    setMenuItems(JSON.parse(localStorage.getItem('menuItems')))
     setSelectedItem(null)
   } else {
-    const newItems = Menu_data.filter((item) => item.id === id)
+    const newItems = menuItems.filter((item) => item.id === id)
     setMenuItems(newItems)
     setSelectedItem(id)
   }
@@ -103,14 +95,58 @@ const handleSubmitReview = (e) => {
   setNewGuitarReview('')
 }
 
+const [showAdd, setShowAdd] = React.useState(true)
+
+const [newBrand, setNewBrand] = React.useState('')
+const [newCategory, setNewCategory] = React.useState('')
+const [newTitle, setNewTitle] = React.useState('')
+const [newYear, setNewYear] = React.useState('')
+const [newPrice, setNewPrice] = React.useState('')
+const [newDescription, setNewDescription] = React.useState('')
+
+
+const [guitarItem, setGuitarItem] = React.useState([])
+
+const addItem = (category, title, year, price, desc) => {
+  const id = menuItems.length ? menuItems[menuItems.length - 1].id + 1 : 1
+  const newGuitar = { 
+    id, 
+    brand: "Test Brand", 
+    title, 
+    category, 
+    year, 
+    price, 
+    img: "test-image.png", 
+    desc }
+  const listItems = [...menuItems, newGuitar]
+  setMenuItems(listItems)
+  localStorage.setItem(`menuItems`, JSON.stringify(listItems))
+  console.log(listItems)
+}
+
+
+
+
+const handleSubmitGuitar = (e) => {
+  e.preventDefault()
+  if (!newCategory) return
+  addItem(newCategory, newTitle, newYear, newPrice, newDescription)
+}
+
+
 return (
     <main id="main">
       <Header 
-      myCollection={myCollection}
-      myCollectionBrand={myCollectionBrand}
-      myCollectionPrice={myCollectionPrice}
-      myCollectionTitle={myCollectionTitle}
+      setShowAdd={setShowAdd}
       />
+      {showAdd && <AddNewGuitar 
+      handleSubmitGuitar={handleSubmitGuitar}
+      setNewCategory={setNewCategory}
+      setNewTitle={setNewTitle}
+      setNewYear={setNewYear}
+      setNewPrice={setNewPrice}
+      setNewDescription={setNewDescription}
+      />}
       <div className="appcolumn">
         <br></br>
         <h3>Select your favourite guitars and give them a review!</h3>
@@ -142,36 +178,32 @@ return (
         <br></br>
         <br></br>
         
-      <Collection 
-        key={myCollection}
-        myCollection={myCollection}
-        myCollectionTitle={myCollectionTitle}
-        myCollectionBrand={myCollectionBrand}
-        myCollectionPrice={myCollectionPrice}
-        filtered={filtered}
-        setClear={setClear}
-        clear={clear}
-        clearCollection={clearCollection}
-      /> 
-      <button onClick={() => {clearCollection(); clearCollectionMenu()}}> Clear Collection</button>
-      </div>
-      
-      </div>
-      <div style={{textAlign: "center"}}>      
-        {/* <Cart /> */}
+        <Collection 
+          key={myCollection}
+          myCollection={myCollection}
+          myCollectionTitle={myCollectionTitle}
+          myCollectionBrand={myCollectionBrand}
+          myCollectionPrice={myCollectionPrice}
+          filtered={filtered}
+          setClear={setClear}
+          clear={clear}
+          clearCollection={clearCollection}
 
+          menuItems={menuItems}
+        /> 
+        <button onClick={() => {clearCollection(); clearCollectionMenu()}}> Clear Collection</button>
+        </div>
         
-
-      </div>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      {/* <Footer /> */}
-    </main>
+        </div>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        {/* <Footer /> */}
+      </main>
   )
 }
 export default App;

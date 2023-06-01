@@ -422,3 +422,8 @@
   flex-grow: 1;
   max-width: 100%
 }
+
+#addGuitar:hover{
+  background-color: #46cc56;
+  color: black;
+}

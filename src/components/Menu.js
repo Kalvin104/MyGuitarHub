@@ -9,8 +9,6 @@ export default function Menu({items, selectItems, selectedItem, addToCollection,
   const [collection, setCollection] = React.useState([])
   const [toggleCollectionButton, setToggleCollectionButton] = React.useState()
 
-
-
   const expandSection = {
     display: expand ? "" : "flex",
     height: expand ? "1000px" : "",
@@ -22,8 +20,6 @@ export default function Menu({items, selectItems, selectedItem, addToCollection,
   height: expand ? "485px" : "485px",
   width: expand ? "100%" : "230px",
   margin: expand ? "auto" : ""
-
-
   }
 
   function expandBox(id){
@@ -49,7 +45,7 @@ export default function Menu({items, selectItems, selectedItem, addToCollection,
     }
   }
 
-  function addToCollectionButton(id, title, brand, img, category, year){
+  function addToCollectionButton(id){
     console.log("itemsArray", itemsArray)
     console.log("myCollection", myCollection)
     if (itemsArray.includes(id)){
@@ -69,7 +65,6 @@ export default function Menu({items, selectItems, selectedItem, addToCollection,
   setShowReviewInput(prevToggle => !prevToggle)
  }
 
-
 function menuItemRender(id){
   if (itemsArray.includes(id)){
     setToggleCollectionButton(true)
@@ -77,7 +72,6 @@ function menuItemRender(id){
     setToggleCollectionButton(false)
   }
 }
-
 
   return (
     
