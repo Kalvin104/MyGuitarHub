@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react';
 import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -95,7 +96,7 @@ const handleSubmitReview = (e) => {
   setNewGuitarReview('')
 }
 
-const [showAdd, setShowAdd] = React.useState(true)
+
 
 const [newBrand, setNewBrand] = React.useState('')
 const [newCategory, setNewCategory] = React.useState('')
@@ -107,11 +108,11 @@ const [newDescription, setNewDescription] = React.useState('')
 
 const [guitarItem, setGuitarItem] = React.useState([])
 
-const addItem = (category, title, year, price, desc) => {
+const addItem = (brand, category, title, year, price, desc) => {
   const id = menuItems.length ? menuItems[menuItems.length - 1].id + 1 : 1
   const newGuitar = { 
     id, 
-    brand: "Test Brand", 
+    brand, 
     title, 
     category, 
     year, 
@@ -130,14 +131,39 @@ const addItem = (category, title, year, price, desc) => {
 const handleSubmitGuitar = (e) => {
   e.preventDefault()
   if (!newCategory) return
-  addItem(newCategory, newTitle, newYear, newPrice, newDescription)
+  addItem(newBrand, newCategory, newTitle, newYear, newPrice, newDescription)
 }
+const [showAdd, setShowAdd] = React.useState(true)
+const [home, setHome] = useState(true)
+const [openColl, setOpenColl] = useState(false)
+
+function openHome(){
+  setHome(true)
+  setOpenColl(false)
+  setShowAdd(false)
+}
+
+function openAddGuitar(){
+  setShowAdd(true)
+  setOpenColl(false)
+  setHome(false)
+}
+
+function openCollection(){
+  setOpenColl(true)
+  setHome(false)
+  setShowAdd(false)
+}
+
 
 
 return (
     <main id="main">
-      <Header 
-      setShowAdd={setShowAdd}
+      <Header
+      openHome={openHome}
+      openCollection={openCollection}
+      openAddGuitar={openAddGuitar}
+
       />
       {showAdd && <AddNewGuitar 
       handleSubmitGuitar={handleSubmitGuitar}
@@ -146,7 +172,9 @@ return (
       setNewYear={setNewYear}
       setNewPrice={setNewPrice}
       setNewDescription={setNewDescription}
+      setNewBrand={setNewBrand}
       />}
+      {home && 
       <div className="appcolumn">
         <br></br>
         <h3>Select your favourite guitars and give them a review!</h3>
@@ -178,6 +206,12 @@ return (
         <br></br>
         <br></br>
         
+        
+        <button onClick={() => {clearCollection(); clearCollectionMenu()}}> Clear Collection</button>
+        </div>
+        
+        </div> }
+        {openColl &&
         <Collection 
           key={myCollection}
           myCollection={myCollection}
@@ -190,11 +224,7 @@ return (
           clearCollection={clearCollection}
 
           menuItems={menuItems}
-        /> 
-        <button onClick={() => {clearCollection(); clearCollectionMenu()}}> Clear Collection</button>
-        </div>
-        
-        </div>
+        /> }
         <br></br>
         <br></br>
         <br></br>
@@ -202,6 +232,7 @@ return (
         <br></br>
         <br></br>
         <br></br>
+      
         {/* <Footer /> */}
       </main>
   )

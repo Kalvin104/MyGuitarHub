@@ -427,3 +427,46 @@
   background-color: #46cc56;
   color: black;
 }
+
+.addGuitarForm {
+height: 140px;
+
+}
+
+.input {
+  height: 25px;
+  font-size: medium;
+  transition: 0.08s ease-in-out;
+}
+.input:focus {
+  background-color: rgb(181, 197, 227)
+}
+
+.input.desc {
+  height: 70px;
+  width: 100%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  resize: none;
+}
+
+.inputBtn {
+  height: 20px;
+  width: 80px;
+  background-color: #46cc56;
+  
+}
+
+.inputBtn:hover {
+  opacity: 80%;
+}
+
+#home-icon {
+  margin: 0;
+  line-height: 80px;
+}
+
+#home-icon:hover {
+  background-color: #46cc56;
+  color: black;
+}

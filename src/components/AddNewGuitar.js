@@ -1,10 +1,10 @@
 import React from 'react'
 
-const AddNewGuitar = ({handleSubmitGuitar, setNewCategory, setNewTitle, setNewYear, setNewPrice, setNewDescription}) => {
+const AddNewGuitar = ({handleSubmitGuitar, setNewBrand, setNewCategory, setNewTitle, setNewYear, setNewPrice, setNewDescription}) => {
   return (
     <form className="addGuitarForm" onSubmit={handleSubmitGuitar}>
         <label htmlFor="brand">Brand:</label>
-        <select name="brand" id="brand">
+        <select className="input" name="brand" id="brand" onChange={(e) => setNewBrand(e.target.value)}>
             <option value="Epiphone">Epiphone</option>
             <option value="Gibson">Gibson</option>
             <option value="Fender">Fender</option>
@@ -17,58 +17,63 @@ const AddNewGuitar = ({handleSubmitGuitar, setNewCategory, setNewTitle, setNewYe
         </select>
         <label>Category</label>
         <input
+            className="input"
             id="inputCategory"
             type="text"
             placeholder="e.g. Les Paul / Stratocaster"
             onChange={(e) => setNewCategory(e.target.value)}
+            required
         ></input>
         <label>Title</label>
         <input
+            className="input"
             autoFocus
             id='inputTitle'
             type='text'
             placeholder='Title'
-            //required
+            required
             onChange={(e) => setNewTitle(e.target.value)}
         >
         </input>
         <label>Year:</label>
         <input
+        className="input"
          id='inputYear'
          type='text'
          placeholder='Year manufactured'
          onChange={(e) => setNewYear(e.target.value)}
-         //required
+         required
         ></input>
         <label>Price</label>
         <input
+            className="input"
             id='inputPrice'
             type='number'
             placeholder='£'
             onChange={(e) => setNewPrice(e.target.value)}
-            //required
+            required
         ></input>
         <label>Description</label>
-        <input
+        <textarea
+            className="input desc"
             id='inputDesc'
             type='text'
             placeholder='Write about this guitar...'
             onChange={(e) => setNewDescription(e.target.value)}
             //required
-        ></input>
+        ></textarea>
         {/* <label>Image</label>
         <input
         id='inputImage'
         type='file'
         ></input> */}
-        <br></br>
 
 
         <button
-        style={{width: "200px"}}
+        className="inputBtn"
         type='submit'
         aria-label='Add Item'
-        >+</button>
+        >Submit</button>
     </form>
 
     // brand: "Gibson",

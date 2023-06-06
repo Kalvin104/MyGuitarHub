@@ -1,7 +1,6 @@
 import React from 'react'
-import Menu_data from './Menu_data'
 
-export default function Collection({ myCollection, filtered, myCollectionTitle, clearCollection, menuItems}) {
+export default function Collection({ myCollection, myCollectionTitle, menuItems}) {
 
 const [showMyCollection, setMyShowCollection] = React.useState(true)
 
@@ -16,7 +15,7 @@ const [showMyCollection, setMyShowCollection] = React.useState(true)
 
   return (
     <div>
-        <h2 style={{marginLeft: "auto"}}>My Collection</h2>
+      <br></br>
         <div className="myCollection-container">
           <button onClick={showCollection}>{showMyCollection ? "Hide" : "Show"}</button>
           {showMyCollection && <div className="myCollection-collection">
