@@ -3,7 +3,16 @@ import React from 'react'
 const AddNewGuitar = ({handleSubmitGuitar, setNewBrand, setNewCategory, setNewTitle, setNewYear, setNewPrice, setNewDescription}) => {
   return (
     <form className="addGuitarForm" onSubmit={handleSubmitGuitar}>
-        <label htmlFor="brand">Brand:</label>
+        <div style={{display: "flex"}}>
+        <div id="formlabelsdiv">
+            <label id="formlabels" >Brand:</label>
+            <label id="formlabels">Category</label>
+            <label id="formlabels">Title</label>
+            <label id="formlabels">Year:</label>
+            <label id="formlabels">Price</label>
+            <label id="formlabels">Description</label>
+        </div>
+        <div>
         <select className="input" name="brand" id="brand" onChange={(e) => setNewBrand(e.target.value)}>
             <option value="Epiphone">Epiphone</option>
             <option value="Gibson">Gibson</option>
@@ -15,7 +24,8 @@ const AddNewGuitar = ({handleSubmitGuitar, setNewBrand, setNewCategory, setNewTi
             <option value="Yamaha">Yamaha</option>
             <option value="Gretsch">Gretsch</option>
         </select>
-        <label>Category</label>
+        <br></br>
+        
         <input
             className="input"
             id="inputCategory"
@@ -24,10 +34,10 @@ const AddNewGuitar = ({handleSubmitGuitar, setNewBrand, setNewCategory, setNewTi
             onChange={(e) => setNewCategory(e.target.value)}
             required
         ></input>
-        <label>Title</label>
+        <br></br>
+        
         <input
             className="input"
-            autoFocus
             id='inputTitle'
             type='text'
             placeholder='Title'
@@ -35,7 +45,8 @@ const AddNewGuitar = ({handleSubmitGuitar, setNewBrand, setNewCategory, setNewTi
             onChange={(e) => setNewTitle(e.target.value)}
         >
         </input>
-        <label>Year:</label>
+        <br></br>
+        
         <input
         className="input"
          id='inputYear'
@@ -44,7 +55,8 @@ const AddNewGuitar = ({handleSubmitGuitar, setNewBrand, setNewCategory, setNewTi
          onChange={(e) => setNewYear(e.target.value)}
          required
         ></input>
-        <label>Price</label>
+        <br></br>
+        
         <input
             className="input"
             id='inputPrice'
@@ -53,7 +65,8 @@ const AddNewGuitar = ({handleSubmitGuitar, setNewBrand, setNewCategory, setNewTi
             onChange={(e) => setNewPrice(e.target.value)}
             required
         ></input>
-        <label>Description</label>
+        <br></br>
+        
         <textarea
             className="input desc"
             id='inputDesc'
@@ -67,13 +80,16 @@ const AddNewGuitar = ({handleSubmitGuitar, setNewBrand, setNewCategory, setNewTi
         id='inputImage'
         type='file'
         ></input> */}
-
-
+        </div>
+        </div>
+        <br></br>
+        <div style={{width: "100%", marginLeft: "40%"}}>
         <button
         className="inputBtn"
         type='submit'
         aria-label='Add Item'
         >Submit</button>
+        </div>
     </form>
 
     // brand: "Gibson",

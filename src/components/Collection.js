@@ -2,13 +2,6 @@ import React from 'react'
 
 export default function Collection({ myCollection, myCollectionTitle, menuItems}) {
 
-const [showMyCollection, setMyShowCollection] = React.useState(true)
-
-
-  function showCollection(){
-    setMyShowCollection(prevClick => !prevClick)
-  }
-
   myCollectionTitle = JSON.parse(localStorage.getItem('guitars'))
   
   let theCollection = menuItems.filter((item) => myCollection.includes(item.id))
@@ -17,17 +10,23 @@ const [showMyCollection, setMyShowCollection] = React.useState(true)
     <div>
       <br></br>
         <div className="myCollection-container">
-          <button onClick={showCollection}>{showMyCollection ? "Hide" : "Show"}</button>
-          {showMyCollection && <div className="myCollection-collection">
+          <div className="myCollection-collection">
             {theCollection.map((menuItem)=> {
               const {id, title, category, img, brand, year} = menuItem
               {return (
-              <div key={id}>
-                {brand} - {category} ({year}) {title}
-                <img src={`./assets/${img}`}></img>
+              <div className='collectionItem' key={id}>
+                <div className="collectionDetails">
+                  <h3>{brand}</h3>
+                  <p>{category}</p>
+                  <p>{year}</p>
+                  <p>{title}</p>
+                </div>
+                <div className="collectionImageDiv">
+                  <img id="collectionImage" src={`./assets/${img}`}></img>
+                </div>
               </div> )}
             })}
-          </div>}
+          </div>
         </div>
     </div>
   )

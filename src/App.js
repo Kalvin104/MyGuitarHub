@@ -133,8 +133,9 @@ const handleSubmitGuitar = (e) => {
   if (!newCategory) return
   addItem(newBrand, newCategory, newTitle, newYear, newPrice, newDescription)
 }
-const [showAdd, setShowAdd] = React.useState(true)
+
 const [home, setHome] = useState(true)
+const [showAdd, setShowAdd] = React.useState(false)
 const [openColl, setOpenColl] = useState(false)
 
 function openHome(){
@@ -155,14 +156,15 @@ function openCollection(){
   setShowAdd(false)
 }
 
-
-
 return (
     <main id="main">
       <Header
       openHome={openHome}
+      home={home}
       openCollection={openCollection}
+      openColl={openColl}
       openAddGuitar={openAddGuitar}
+      showAdd={showAdd}
 
       />
       {showAdd && <AddNewGuitar 
@@ -205,34 +207,21 @@ return (
         <br></br>
         <br></br>
         <br></br>
-        
-        
-        <button onClick={() => {clearCollection(); clearCollectionMenu()}}> Clear Collection</button>
         </div>
-        
         </div> }
         {openColl &&
         <Collection 
           key={myCollection}
           myCollection={myCollection}
-          myCollectionTitle={myCollectionTitle}
-          myCollectionBrand={myCollectionBrand}
-          myCollectionPrice={myCollectionPrice}
           filtered={filtered}
           setClear={setClear}
           clear={clear}
           clearCollection={clearCollection}
-
           menuItems={menuItems}
-        /> }
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-      
+        /> 
+        }
+          {openColl && <button onClick={() => {clearCollection(); clearCollectionMenu()}}> Clear Collection</button>}
+        <br></br>      
         {/* <Footer /> */}
       </main>
   )

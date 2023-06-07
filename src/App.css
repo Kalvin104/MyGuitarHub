@@ -379,7 +379,6 @@
 }
 
 .myCollection-container {
-  background-color: rgb(18, 18, 18);
   border-radius: 15px;
   align-content: flex-start;
   margin: auto;
@@ -387,11 +386,10 @@
   overflow-x: scroll;
   margin-left: 50px;
   margin-right: 50px;
+  height: 515px;
+  color: black
 }
 
-.myCollection-collection {
-  color: white;
-}
 
 .myCollection-guitars {
   font-size: 110%;
@@ -443,9 +441,12 @@ height: 140px;
 }
 
 .input.desc {
-  height: 70px;
+  height: 300px;
   width: 100%;
-  padding: 12px 20px;
+  padding: 17px 10px;
+  line-height: 7px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: larger;
   box-sizing: border-box;
   resize: none;
 }
@@ -469,4 +470,39 @@ height: 140px;
 #home-icon:hover {
   background-color: #46cc56;
   color: black;
+}
+
+.addGuitarForm{
+  background-color: #F0F0F0;
+  height: 500px;
+  width: 50%;
+  margin: auto;
+  border: solid black 1px;
+}
+
+/* Input Form */
+
+#brand{
+  border-radius: 5px;
+}
+
+#formlabelsdiv{
+  display: flex;
+  flex-direction: column;
+}
+
+#formlabels{
+  height: 30px;
+}
+
+
+/* Collection Styles */
+
+.collectionItem {
+  display: flex;
+  gap: 50px;
+}
+
+.collectionDetails {
+  margin: auto;
 }
