@@ -14,7 +14,8 @@ function App() {
 const [selectedItem, setSelectedItem] = React.useState(null)
 //MENU APP
 const allCategories = ["all", ...new Set(Menu_data.map((item) => item.category))]
-const [menuItems, setMenuItems] = React.useState(JSON.parse(localStorage.getItem('menuItems')) || Menu_data)
+const [allItems, setAllItems] = useState(JSON.parse(localStorage.getItem('menuItems'))  || Menu_data)
+const [menuItems, setMenuItems] = React.useState(JSON.parse(localStorage.getItem('menuItems'))  || Menu_data)
 const [categories, setCategories] = React.useState(allCategories)
 const allFiltered = [...new Set(Menu_data.map((item) => item.id))]
 const [filtered, setFiltered] = React.useState(allFiltered)
@@ -23,10 +24,10 @@ const [filtered, setFiltered] = React.useState(allFiltered)
 const filterItems = (category) => {
   if (selectedItem === null) {
     if (category !== "all") 
-      {const newItems = menuItems.filter((item)=> item.category === category)
+      {const newItems = allItems.filter((item)=> item.category === category)
       setMenuItems(newItems)} else {
         category = "all"
-      setMenuItems(JSON.parse(localStorage.getItem('menuItems')))
+      setMenuItems(JSON.parse(localStorage.getItem('menuItems')) || Menu_data)
     }
   }
 }
@@ -37,13 +38,9 @@ const [myCollection, setMyCollection] = React.useState(() => {
   return initialValue || []
 })
 
-const [myCollectionTitle, setMyCollectionTitle] = React.useState([])
-const [myCollectionBrand, setMyCollectionBrand] = React.useState([])
-const [myCollectionPrice, setMyCollectionPrice] = React.useState([])
-
 const selectItems = (id, expand) => {
   if (expand === true) {
-    setMenuItems(JSON.parse(localStorage.getItem('menuItems')))
+    setMenuItems(JSON.parse(localStorage.getItem('menuItems')) || Menu_data)
     setSelectedItem(null)
   } else {
     const newItems = menuItems.filter((item) => item.id === id)
@@ -52,11 +49,12 @@ const selectItems = (id, expand) => {
   }
 }
 
+const [coll, setColl] = React.useState(myCollection)
+
 const addToCollection = (id, title, brand, price) => {
   setMyCollection(oldCollection => [...oldCollection, id])
-  setMyCollectionTitle(oldCollectionTitle => [...oldCollectionTitle, title])
-  setMyCollectionBrand(oldCollectionBrand => [...oldCollectionBrand, brand])
-  setMyCollectionPrice(oldCollectionPrice => [...oldCollectionPrice, price])
+  let theCollection = allItems.filter((item) => coll.includes(item.id))
+  setColl(theCollection)
 }
 
 const [clear, setClear] = React.useState(false)
@@ -109,7 +107,7 @@ const [newDescription, setNewDescription] = React.useState('')
 const [guitarItem, setGuitarItem] = React.useState([])
 
 const addItem = (brand, category, title, year, price, desc) => {
-  const id = menuItems.length ? menuItems[menuItems.length - 1].id + 1 : 1
+  const id = allItems.length ? allItems[allItems.length - 1].id + 1 : 1
   const newGuitar = { 
     id, 
     brand, 
@@ -119,14 +117,12 @@ const addItem = (brand, category, title, year, price, desc) => {
     price, 
     img: "test-image.png", 
     desc }
-  const listItems = [...menuItems, newGuitar]
+  const listItems = [...allItems, newGuitar]
   setMenuItems(listItems)
+  setAllItems(listItems)
   localStorage.setItem(`menuItems`, JSON.stringify(listItems))
   console.log(listItems)
 }
-
-
-
 
 const handleSubmitGuitar = (e) => {
   e.preventDefault()
@@ -217,7 +213,8 @@ return (
           setClear={setClear}
           clear={clear}
           clearCollection={clearCollection}
-          menuItems={menuItems}
+          allItems={allItems}
+          coll={coll}
         /> 
         }
           {openColl && <button onClick={() => {clearCollection(); clearCollectionMenu()}}> Clear Collection</button>}

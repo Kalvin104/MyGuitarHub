@@ -12,8 +12,8 @@ const AddNewGuitar = ({handleSubmitGuitar, setNewBrand, setNewCategory, setNewTi
             <label id="formlabels">Price</label>
             <label id="formlabels">Description</label>
         </div>
-        <div>
-        <select className="input" name="brand" id="brand" onChange={(e) => setNewBrand(e.target.value)}>
+        <div id="inputBoxes">
+        <select style={{width: "100px", gap: "5px"}} className="input" name="brand" id="brand" onChange={(e) => setNewBrand(e.target.value)}>
             <option value="Epiphone">Epiphone</option>
             <option value="Gibson">Gibson</option>
             <option value="Fender">Fender</option>
@@ -24,9 +24,9 @@ const AddNewGuitar = ({handleSubmitGuitar, setNewBrand, setNewCategory, setNewTi
             <option value="Yamaha">Yamaha</option>
             <option value="Gretsch">Gretsch</option>
         </select>
-        <br></br>
         
         <input
+        style={{width: "200px"}}
             className="input"
             id="inputCategory"
             type="text"
@@ -34,9 +34,9 @@ const AddNewGuitar = ({handleSubmitGuitar, setNewBrand, setNewCategory, setNewTi
             onChange={(e) => setNewCategory(e.target.value)}
             required
         ></input>
-        <br></br>
         
         <input
+        style={{width: "300px"}}
             className="input"
             id='inputTitle'
             type='text'
@@ -45,19 +45,19 @@ const AddNewGuitar = ({handleSubmitGuitar, setNewBrand, setNewCategory, setNewTi
             onChange={(e) => setNewTitle(e.target.value)}
         >
         </input>
-        <br></br>
         
         <input
+        style={{width: "40px"}}
         className="input"
          id='inputYear'
          type='text'
-         placeholder='Year manufactured'
+         placeholder='Year'
          onChange={(e) => setNewYear(e.target.value)}
          required
         ></input>
-        <br></br>
         
         <input
+            style={{width: "110px"}}
             className="input"
             id='inputPrice'
             type='number'
@@ -65,25 +65,24 @@ const AddNewGuitar = ({handleSubmitGuitar, setNewBrand, setNewCategory, setNewTi
             onChange={(e) => setNewPrice(e.target.value)}
             required
         ></input>
-        <br></br>
         
         <textarea
-            className="input desc"
+            className="inputDesc"
             id='inputDesc'
             type='text'
             placeholder='Write about this guitar...'
             onChange={(e) => setNewDescription(e.target.value)}
             //required
         ></textarea>
+        </div>
         {/* <label>Image</label>
         <input
         id='inputImage'
         type='file'
         ></input> */}
+        
         </div>
-        </div>
-        <br></br>
-        <div style={{width: "100%", marginLeft: "40%"}}>
+        <div style={{width: "100%", marginLeft: "40%", paddingTop: "20px"}}>
         <button
         className="inputBtn"
         type='submit'

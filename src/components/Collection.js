@@ -1,10 +1,12 @@
 import React from 'react'
 
-export default function Collection({ myCollection, myCollectionTitle, menuItems}) {
+export default function Collection({ myCollection, myCollectionTitle, allItems, coll }) {
 
   myCollectionTitle = JSON.parse(localStorage.getItem('guitars'))
   
-  let theCollection = menuItems.filter((item) => myCollection.includes(item.id))
+
+
+  let theCollection = allItems.filter((item) => coll.includes(item.id))
 
   return (
     <div>
@@ -28,6 +30,9 @@ export default function Collection({ myCollection, myCollectionTitle, menuItems}
             })}
           </div>
         </div>
+        <br></br>
+        <br></br>
+        <br></br>
     </div>
   )
 }

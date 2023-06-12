@@ -8,6 +8,7 @@ export default function Menu({items, selectItems, selectedItem, addToCollection,
   const [showReviewInput, setShowReviewInput] = React.useState(false)
   const [collection, setCollection] = React.useState([])
   const [toggleCollectionButton, setToggleCollectionButton] = React.useState()
+  console.log(expand)
 
   const expandSection = {
     display: expand ? "" : "flex",
@@ -58,7 +59,6 @@ export default function Menu({items, selectItems, selectedItem, addToCollection,
       setToggleCollectionButton(prevToggle => !prevToggle)
       return addToCollection(itemsArray)
   }
-
 }
 
  function toggleAddReview(){
@@ -129,21 +129,14 @@ function menuItemRender(id){
                   selectedItem={selectedItem}
                   /> }
               </div>
-              
           </div>
-          
-          
-          
-          
           <h3>Reviews:</h3>
           { guitarReviews.length ?  ( 
-          
           <ReviewList
             guitarReviews={guitarReviews.filter((review) => review.selectedItem === selectedItem)}
             handleCheckGuitar={handleCheckGuitar}
             handleSubmitReview={handleSubmitReview}
             selectedItem={selectedItem}
-          
           />
           ) : (
             <p>No Reviews - Add one!</p>
@@ -151,8 +144,6 @@ function menuItemRender(id){
          </div>
          }
         </article>}
-
-        
       })}
       </div>
   )
