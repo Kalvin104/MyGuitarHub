@@ -1,13 +1,12 @@
-
-
-.html, body {
+.html,
+body {
   background-color: rgb(240, 240, 240);
   margin: 0;
   padding: 0;
 }
 
 #main {
-  min-height: 100vh
+  min-height: 100vh;
 }
 
 :root {
@@ -17,7 +16,7 @@
   --red1: #bd4a24;
   --deepblue1: #d5cd75;
   --banner: #8ec583;
-  --transition: 0.00s;
+  --transition: 0s;
   --hovercolor: #46cc56;
   --selectedcolor: #cdd1a0;
   --header: #000000;
@@ -26,7 +25,6 @@
 .App {
   text-align: center;
 }
-
 
 .App-logo {
   height: 40vmin;
@@ -74,16 +72,16 @@
   color: white;
   padding-left: 7px;
 }
-.prev:hover{
-  background-color: rgb(148, 75, 75)
+.prev:hover {
+  background-color: rgb(148, 75, 75);
 }
-.next{
+.next {
   background-color: rgb(22, 99, 22);
   color: white;
   padding-left: 19px;
 }
-.next:hover{
-  background-color: rgb(54, 184, 54)
+.next:hover {
+  background-color: rgb(54, 184, 54);
 }
 
 .controller-container {
@@ -121,19 +119,19 @@
 }
 
 .review-container-add1 {
-  opacity: 40%
+  opacity: 40%;
 }
 
 .review-container-add2 {
-  opacity: 20%
+  opacity: 20%;
 }
 
 .review-container-sub1 {
-  opacity: 40%
+  opacity: 40%;
 }
 
 .review-container-sub2 {
-  opacity: 20%
+  opacity: 20%;
 }
 
 .ourreviews {
@@ -151,12 +149,11 @@
   width: 200px;
   height: 150px;
 }
-.review-container{
+.review-container {
   line-height: 10px;
   font-weight: bold;
-  
 }
-.button-container{
+.button-container {
   margin-left: 140px;
   margin-top: -20px;
   display: flex;
@@ -208,18 +205,13 @@
   font-size: 25px;
 }
 
-
-
 .bigcont {
-
   text-align: center;
   margin: auto;
 }
 .guitar-container {
   display: flex;
 }
-
-
 
 .guitarinfo-container {
   background-color: rgb(238, 238, 238);
@@ -243,8 +235,6 @@
   font-size: 20px;
 }
 
-
-
 /* menu app */
 
 .categories-container {
@@ -252,14 +242,12 @@
   margin: auto;
 }
 
-
-
 .filter-btn {
   background-color: white;
   width: 100px;
   height: 40px;
   border-radius: 10px;
-  transition: var(--transition)
+  transition: var(--transition);
 }
 
 .filter-btn:hover {
@@ -279,8 +267,7 @@
   outline: 1px solid rgb(54, 74, 94);
 }
 
-.section-container{
-  background-color: var(--backcolor);
+.section-container {
   /* width: 100%; */
   /* height: 510px; */
   /* display: flex; */
@@ -293,15 +280,31 @@
   margin-right: 50px;
 }
 
+.section-fade {
+  width: 60px;
+  height: 494px;
+  background-image: linear-gradient(
+    to left,
+    rgba(255, 0, 0, 0),
+    rgb(233, 233, 233)
+  );
+  position: absolute;
+}
 
+.section-fade-right {
+  width: 600px;
+  height: 494px;
+background-color: red
+  );
+}
 
-.menu-desc{
+.menu-desc {
   margin: 0;
   padding-left: 20px;
   padding-right: 60px;
 }
 
-.menu-item{
+.menu-item {
   background-color: var(--backcolor);
   border-radius: 15px;
   /* box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.226); */
@@ -312,10 +315,8 @@
   transition: var(--transition);
   margin-top: 0;
   margin-bottom: 0;
-  margin: 5px 5px 5px 5px
+  margin: 5px 5px 5px 5px;
 }
-
-
 
 .menu-price {
   font-size: 28px;
@@ -339,13 +340,12 @@
   font-size: 15px;
   letter-spacing: 1.6px;
   text-align: center;
-  background-color: var(--deepblue1)
-
+  background-color: var(--deepblue1);
 }
 
-.menu-category:hover{
+.menu-category:hover {
   background-color: var(--hovercolor) !important;
-  opacity: 0.8
+  opacity: 0.8;
 }
 
 .shopping-container {
@@ -359,11 +359,10 @@
   height: 60px;
   width: 130px;
   border-radius: 5px;
-
 }
-.shopping-button:hover{
+.shopping-button:hover {
   background-color: rgb(141, 192, 162);
-  opacity: 0.8
+  opacity: 0.8;
 }
 
 .appcolumn {
@@ -386,9 +385,8 @@
   /* overflow-x: scroll; */
   margin-left: 10%;
   margin-right: 30%;
-  color: black
+  color: black;
 }
-
 
 .myCollection-guitars {
   font-size: 110%;
@@ -407,7 +405,7 @@
   justify-content: flex-start;
   margin: 0.25rem 0 0;
   padding: 0 0.5rem 0.25rem;
-  border-bottom: 1px solid #eee
+  border-bottom: 1px solid #eee;
 }
 
 .searchForm label {
@@ -415,24 +413,24 @@
   left: -99999px;
 }
 
-.searchForm input[type='text'] {
+.searchForm input[type="text"] {
   flex-grow: 1;
-  max-width: 100%
+  max-width: 100%;
 }
 
-.tab{
+.tab {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
 
-#addGuitar:hover{
+#addGuitar:hover {
   background-color: #4e9356;
   color: black;
 }
 
 .addGuitarForm {
-height: 140px;
-padding-top: 20px;
+  height: 140px;
+  padding-top: 20px;
 }
 
 .input {
@@ -441,7 +439,7 @@ padding-top: 20px;
   transition: 0.08s ease-in-out;
 }
 .input:focus {
-  background-color: rgb(181, 197, 227)
+  background-color: rgb(181, 197, 227);
 }
 
 .inputDesc {
@@ -459,7 +457,6 @@ padding-top: 20px;
   height: 20px;
   width: 80px;
   background-color: #46cc56;
-  
 }
 
 .inputBtn:hover {
@@ -476,8 +473,8 @@ padding-top: 20px;
   color: black;
 }
 
-.addGuitarForm{
-  background-color: #F0F0F0;
+.addGuitarForm {
+  background-color: #f0f0f0;
   height: 500px;
   width: 50%;
   margin: auto;
@@ -485,25 +482,24 @@ padding-top: 20px;
 
 /* Input Form */
 
-#brand{
+#brand {
   border-radius: 5px;
 }
 
-#formlabelsdiv{
+#formlabelsdiv {
   display: flex;
   flex-direction: column;
 }
 
-#formlabels{
+#formlabels {
   height: 30px;
 }
 
-#inputBoxes{
+#inputBoxes {
   width: "900px";
   display: flex;
   flex-direction: column;
 }
-
 
 /* Collection Styles */
 
@@ -515,4 +511,3 @@ padding-top: 20px;
   margin: auto;
   font-size: 180%;
 }
-

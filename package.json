@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "dotenv": "^16.0.3",
+    "miragejs": "^0.1.48",
     "nodemon": "^2.0.22"
   }
 }
