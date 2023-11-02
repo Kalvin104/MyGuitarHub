@@ -2,8 +2,9 @@ import React from "react";
 import ReviewAdd from "./ReviewAdd";
 import ReviewList from "./ReviewList";
 
+import { getGuitars } from "../api";
+
 export default function Menu({
-  items,
   selectItems,
   selectedItem,
   addToCollection,
@@ -18,7 +19,22 @@ export default function Menu({
   const [showReviewInput, setShowReviewInput] = React.useState(false);
   //const [collection, setCollection] = React.useState([]);
   const [toggleCollectionButton, setToggleCollectionButton] = React.useState();
-  console.log(expand);
+  const [allGuitars, setAllGuitars] = React.useState([]);
+
+  function loadData() {
+    React.useEffect(() => {
+      async function loadGuitars() {
+        try {
+          const data = await getGuitars();
+          setAllGuitars(data);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+      loadGuitars();
+    }, []);
+  }
+  loadData();
 
   const expandSection = {
     display: expand ? "" : "flex",
@@ -37,6 +53,7 @@ export default function Menu({
     setExpand(prevExpand => !prevExpand);
     selectItems(id, expand);
     menuItemRender(id);
+    selectGuitar(id);
   }
 
   let itemsArray = localStorage.getItem("guitars")
@@ -58,8 +75,6 @@ export default function Menu({
   }
 
   function addToCollectionButton(id) {
-    console.log("itemsArray", itemsArray);
-    console.log("myCollection", myCollection);
     if (itemsArray.includes(id)) {
       setToggleCollectionButton(prevToggle => !prevToggle);
       removeFromCollection(id);
@@ -84,10 +99,20 @@ export default function Menu({
     }
   }
 
+  function selectGuitar(id) {
+    const storeAllGuitars = allGuitars;
+    if (expand === true) {
+      setAllGuitars(storeAllGuitars);
+    } else {
+      const selectedGuitar = allGuitars.filter(guitar => guitar.id === id);
+      setAllGuitars(selectedGuitar);
+    }
+  }
+
   return (
     <div className="section-container" style={expandSection}>
       <div className="section-fade"></div>
-      {items.map(menuItem => {
+      {allGuitars.map(menuItem => {
         const { id, title, category, price, desc, img, brand, year } = menuItem;
         {
           return (

@@ -1,12 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import "./App.css";
-import Collection from "./components/Collection";
 import Menu from "./components/Menu";
 import Menu_data from "./components/Menu_data";
 import Categories from "./components/Categories";
-import AddNewGuitar from "./components/AddNewGuitar";
-import Compare_page from "./components/compare/Compare_page";
 
 function App() {
   const [selectedItem, setSelectedItem] = React.useState(null);
@@ -22,8 +19,6 @@ function App() {
     JSON.parse(localStorage.getItem("menuItems")) || Menu_data
   );
   const [categories, setCategories] = React.useState(allCategories);
-  const allFiltered = [...new Set(Menu_data.map(item => item.id))];
-  const [filtered, setFiltered] = React.useState(allFiltered);
 
   //CATEGORY APP
   const filterItems = category => {
@@ -65,15 +60,6 @@ function App() {
     setColl(theCollection);
   };
 
-  const [clear, setClear] = React.useState(false);
-
-  function clearCollection() {
-    localStorage.removeItem("guitars");
-    setMyCollection([]);
-    setClear(prevClear => !prevClear);
-    console.log("myCollection after clear: ", myCollection);
-  }
-
   function clearCollectionMenu() {
     console.log("clear collection menu selected");
   }
@@ -108,13 +94,6 @@ function App() {
     setNewGuitarReview("");
   };
 
-  const [newBrand, setNewBrand] = React.useState("");
-  const [newCategory, setNewCategory] = React.useState("");
-  const [newTitle, setNewTitle] = React.useState("");
-  const [newYear, setNewYear] = React.useState("");
-  const [newPrice, setNewPrice] = React.useState("");
-  const [newDescription, setNewDescription] = React.useState("");
-
   const addItem = (brand, category, title, year, price, desc) => {
     const id = allItems.length ? allItems[allItems.length - 1].id + 1 : 1;
     const newGuitar = {
@@ -134,79 +113,36 @@ function App() {
     console.log(listItems);
   };
 
-  const handleSubmitGuitar = e => {
-    e.preventDefault();
-    if (!newCategory) return;
-    addItem(newBrand, newCategory, newTitle, newYear, newPrice, newDescription);
-  };
-
-  const [home, setHome] = useState(true);
-  const [showAdd, setShowAdd] = React.useState(false);
-
   return (
     <main id="main">
-      {/* <Header
-        openHome={openHome}
-        home={home}
-        openCollection={openCollection}
-        openColl={openColl}
-        openAddGuitar={openAddGuitar}
-        showAdd={showAdd}
-        openComparePage={openComparePage}
-      /> */}
-
-      {showAdd && (
-        <AddNewGuitar
-          handleSubmitGuitar={handleSubmitGuitar}
-          setNewCategory={setNewCategory}
-          setNewTitle={setNewTitle}
-          setNewYear={setNewYear}
-          setNewPrice={setNewPrice}
-          setNewDescription={setNewDescription}
-          setNewBrand={setNewBrand}
-        />
-      )}
-      {home && (
-        <div className="appcolumn">
-          <br></br>
-          <h3>Select your favourite guitars and give them a review!</h3>
-          <br></br>
-          <div>
-            <div className="categories-container">
-              <Categories categories={categories} filterItems={filterItems} />
-            </div>
-            <Menu
-              items={menuItems}
-              selectItems={selectItems}
-              addToCollection={addToCollection}
-              clearCollectionMenu={clearCollectionMenu}
-              myCollection={myCollection}
-              //Pass down functions to review component
-              handleCheckGuitar={handleCheckGuitar}
-              handleSubmitReview={handleSubmitReview}
-              guitarReviews={guitarReviews}
-              //Pass down ReviewAdd
-              newGuitarReview={newGuitarReview}
-              setNewGuitarReview={setNewGuitarReview}
-              selectedItem={selectedItem}
-            />
-            <br></br>
-            <br></br>
-            <br></br>
+      <div className="appcolumn">
+        <br></br>
+        <h3>Select your favourite guitars and give them a review!</h3>
+        <br></br>
+        <div>
+          <div className="categories-container">
+            <Categories categories={categories} filterItems={filterItems} />
           </div>
+          <Menu
+            items={menuItems}
+            selectItems={selectItems}
+            addToCollection={addToCollection}
+            clearCollectionMenu={clearCollectionMenu}
+            myCollection={myCollection}
+            //Pass down functions to review component
+            handleCheckGuitar={handleCheckGuitar}
+            handleSubmitReview={handleSubmitReview}
+            guitarReviews={guitarReviews}
+            //Pass down ReviewAdd
+            newGuitarReview={newGuitarReview}
+            setNewGuitarReview={setNewGuitarReview}
+            selectedItem={selectedItem}
+          />
+          <br></br>
+          <br></br>
+          <br></br>
         </div>
-      )}
-
-      <Collection
-        key={myCollection}
-        myCollection={myCollection}
-        filtered={filtered}
-        setClear={setClear}
-        clear={clear}
-        clearCollection={clearCollection}
-        allItems={allItems}
-        coll={coll}
-      />
+      </div>
     </main>
   );
 }
