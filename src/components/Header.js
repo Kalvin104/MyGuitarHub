@@ -1,34 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export default function Header({ openColl, home, showAdd }) {
-  const [hover, setHover] = React.useState(false);
-
-  const hoverStyle = {
-    backgroundColor: hover ? "" : "green"
-  };
-
+export default function Header({ home }) {
   const selectHome = {
     backgroundColor: home ? "#F0F0F0" : "",
     color: home ? "black" : "white",
     paddingLeft: "25px",
     paddingRight: "25px"
-  };
-  const selectCollection = {
-    backgroundColor: openColl ? "#F0F0F0" : "",
-    color: openColl ? "black" : "white",
-
-    paddingLeft: "25px",
-    paddingRight: "25px",
-    paddingTop: "50px"
-  };
-  const selectAddGuitar = {
-    backgroundColor: showAdd ? "#F0F0F0" : "",
-    color: showAdd ? "black" : "white",
-
-    paddingLeft: "25px",
-    paddingRight: "25px",
-    paddingTop: "50px"
   };
 
   return (
@@ -49,7 +27,7 @@ export default function Header({ openColl, home, showAdd }) {
         <NavLink className="tab" id="addGuitar" to="/newguitar">
           New Guitar
         </NavLink>
-        <NavLink className="tab" id="addGuitar" to="/collection">
+        <NavLink className="tab" id="addGuitar" to="/guitars">
           Collection
         </NavLink>
         <NavLink className="tab" id="compareGuitar" to="/compare">

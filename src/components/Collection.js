@@ -3,10 +3,10 @@ import React from "react";
 import { getGuitars } from "../api";
 
 export default function Collection({
-  myCollection,
-  myCollectionTitle,
-  allItems,
-  coll
+  // myCollection,
+  myCollectionTitle
+  // allItems,
+  // coll
 }) {
   myCollectionTitle = JSON.parse(localStorage.getItem("guitars"));
 
@@ -19,33 +19,27 @@ export default function Collection({
       try {
         const data = await getGuitars();
         setGuitars(data);
-
+        console.log("data", data);
       } catch (err) {
-        console.log(err);
+        console.log("err", err);
       }
     }
     loadGuitars();
   }, []);
 
-  React.useEffect(() => {
-    fetch(`/api/guitars/`)
-      .then(res => res.json())
-      .then(data => console.log("TEST", data));
-  }, []);
-
-  const [myCollection2, setMyCollection] = React.useState(() => {
-    //Getting stored collection from localStorage
-    const saved = localStorage.getItem("guitars");
-    const initialValue = JSON.parse(saved);
-    return initialValue || [];
-  });
+  // const [myCollection2, setMyCollection] = React.useState(() => {
+  //   //Getting stored collection from localStorage
+  //   const saved = localStorage.getItem("guitars");
+  //   const initialValue = JSON.parse(saved);
+  //   return initialValue || [];
+  // });
 
   return (
     <div>
       <br></br>
       <div className="myCollection-container">
         <div className="myCollection-collection">
-          {myCollection2.map(menuItem => {
+          {guitars.map(menuItem => {
             const { id, title, category, img, brand, year } = menuItem;
             {
               return (
