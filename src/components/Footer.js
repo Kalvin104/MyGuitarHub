@@ -1,5 +1,7 @@
 import React from 'react'
 
+
+
 export default function Footer() {
   return (
     <div style={{
@@ -14,6 +16,8 @@ export default function Footer() {
         <br></br>
         <br></br>
         <p>Site by james wickham - still in development</p>
+        <p>Link to my portfolio website</p>
+        
     </div>
   )
 }

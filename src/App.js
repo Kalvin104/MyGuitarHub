@@ -142,8 +142,51 @@ function App() {
           <br></br>
           <br></br>
         </div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 86d596bf76bf6365e2915806a7e837ad567f156d
       </div>
     </main>
   );
+=======
+        <Menu 
+        items={menuItems}
+        selectItems={selectItems}
+        addToCollection={addToCollection}
+        clearCollectionMenu={clearCollectionMenu}
+        myCollection={myCollection}
+        //Pass down functions to review component
+        handleCheckGuitar={handleCheckGuitar}
+        handleSubmitReview={handleSubmitReview}
+        guitarReviews={guitarReviews}
+        //Pass down ReviewAdd
+        newGuitarReview={newGuitarReview}
+        setNewGuitarReview={setNewGuitarReview}
+        selectedItem={selectedItem}
+        />
+        <br></br>
+        <br></br>
+        <br></br>
+        </div>
+        </div> }
+        {openColl &&
+        <Collection 
+          key={myCollection}
+          myCollection={myCollection}
+          filtered={filtered}
+          setClear={setClear}
+          clear={clear}
+          clearCollection={clearCollection}
+          allItems={allItems}
+          coll={coll}
+        /> 
+        }
+          {openColl && <button onClick={() => {clearCollection(); clearCollectionMenu()}}> Clear Collection</button>}
+        <br></br>      
+        <Footer />
+      </main>
+  )
+>>>>>>> 01ddf1f (test)
 }
 export default App;
