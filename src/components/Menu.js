@@ -108,6 +108,7 @@ export default function Menu({
       setAllGuitars(selectedGuitar);
     }
   }
+  console.log('ALLGUITARS', allGuitars)
 
   return (
     <div className="section-container" style={expandSection}>

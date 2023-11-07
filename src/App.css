@@ -511,3 +511,25 @@ background-color: red
   margin: auto;
   font-size: 180%;
 }
+
+.compare {
+  display: flex;
+  margin-left: 25px;
+  margin-right: 25px;
+  gap: 10px;
+  
+}
+
+
+.compareguitar-container {
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 1px;
+}
+
+.divleft {
+  background-color: rgb(164, 181, 155);
+}
+.divright {
+  background-color: rgb(214, 228, 193)
+}

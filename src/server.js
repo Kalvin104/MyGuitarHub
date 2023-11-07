@@ -125,6 +125,11 @@ createServer({
       return schema.guitars.all();
     });
 
+    this.get("/guitars/id", (schema, request) => {
+      const id = request.params.id
+      return schema.guitars.find(id)
+    })
+
     this.post("/guitars", (schema, request) => {
       let attrs = JSON.parse(request.requestBody);
 

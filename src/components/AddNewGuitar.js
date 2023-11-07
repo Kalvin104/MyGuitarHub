@@ -75,11 +75,6 @@ const AddNewGuitar = ({handleSubmitGuitar, setNewBrand, setNewCategory, setNewTi
             //required
         ></textarea>
         </div>
-        {/* <label>Image</label>
-        <input
-        id='inputImage'
-        type='file'
-        ></input> */}
         
         </div>
         <div style={{width: "100%", marginLeft: "40%", paddingTop: "20px"}}>
