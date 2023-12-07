@@ -4,6 +4,8 @@ import ReviewList from "./ReviewList";
 
 import { getGuitars } from "../api";
 
+import { useState, useEffect } from 'react-dom'
+
 export default function Menu({
   selectItems,
   selectedItem,
@@ -13,28 +15,16 @@ export default function Menu({
   handleSubmitReview,
   guitarReviews,
   setNewGuitarReview,
-  newGuitarReview
+  newGuitarReview,
+  allGuitars,
+  setAllGuitars,
+  guitarCache,
+  setGuitarCache
 }) {
   const [expand, setExpand] = React.useState(false);
   const [showReviewInput, setShowReviewInput] = React.useState(false);
-  //const [collection, setCollection] = React.useState([]);
   const [toggleCollectionButton, setToggleCollectionButton] = React.useState();
-  const [allGuitars, setAllGuitars] = React.useState([]);
 
-  function loadData() {
-    React.useEffect(() => {
-      async function loadGuitars() {
-        try {
-          const data = await getGuitars();
-          setAllGuitars(data);
-        } catch (err) {
-          console.log(err);
-        }
-      }
-      loadGuitars();
-    }, []);
-  }
-  loadData();
 
   const expandSection = {
     display: expand ? "" : "flex",
@@ -51,6 +41,7 @@ export default function Menu({
 
   function expandBox(id) {
     setExpand(prevExpand => !prevExpand);
+    console.log('EXPAND:', expand)
     selectItems(id, expand);
     menuItemRender(id);
     selectGuitar(id);
@@ -100,19 +91,16 @@ export default function Menu({
   }
 
   function selectGuitar(id) {
-    const storeAllGuitars = allGuitars;
-    if (expand === true) {
-      setAllGuitars(storeAllGuitars);
+    const selectedGuitar = allGuitars.filter(guitar => guitar.id === id)
+    if (expand === false) {
+      setAllGuitars(selectedGuitar)
     } else {
-      const selectedGuitar = allGuitars.filter(guitar => guitar.id === id);
-      setAllGuitars(selectedGuitar);
+      setAllGuitars(guitarCache)
     }
   }
-  console.log('ALLGUITARS', allGuitars)
 
   return (
     <div className="section-container" style={expandSection}>
-      <div className="section-fade"></div>
       {allGuitars.map(menuItem => {
         const { id, title, category, price, desc, img, brand, year } = menuItem;
         {
@@ -244,7 +232,6 @@ export default function Menu({
           );
         }
       })}
-      <div className="section-fade-right">-</div>
     </div>
   );
 }

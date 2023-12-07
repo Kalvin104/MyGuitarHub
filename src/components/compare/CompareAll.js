@@ -3,6 +3,9 @@ import React from 'react'
 import { Outlet, NavLink } from 'react-router-dom'
 import { getGuitars } from '../../api'
 
+import CompareUnit from './CompareUnit'
+import ComparePrice from './ComparePrice'
+
 export default function CompareAll(){
 
     const [allGuitars, setAllGuitars] = React.useState([])
@@ -22,48 +25,53 @@ export default function CompareAll(){
     }
     loadData()
 
- console.log(allGuitars)
+    console.log(allGuitars)
+
+    const guitarLeft = allGuitars.filter(guitar => guitar.id === '1')
+    const guitarRight = allGuitars.filter(guitar => guitar.id === '6')
+
+    const guitarLeftPrice = guitarLeft.map(guitar => {
+        const { price } = guitar
+        return price
+    })
+
+    const guitarRightPrice = guitarRight.map(guitar => {
+        const { price } = guitar
+        return price
+    })
+
+    
+
     return (
         <>
-        <h2>Compare All Guitars!</h2>
+        <h2 style={{textAlign: 'center'}}>Compare All Guitars!</h2>
             <div className='compare'>
                 <div className='compare-left'>
-                    <h2>1</h2>
-                    {allGuitars.map(guitar => {
+                    {guitarLeft.map(guitar => {
                         const { id, title, category, price, desc, img, brand, year } = guitar;
                         {
                             return (
-                                <article key={id} className='compareguitar-container'>
-                                    <div className='divleft'>
-                                        <h3>{category}</h3>
-                                        <h4>{title}</h4>
-                                        <p>{price}</p>
-                                        <p>{desc}</p>
-                                        <p>{brand}</p>
-                                        <p>{year}</p> 
-                                    </div> 
-                                </article>
+                                <CompareUnit 
+                                    guitar={guitar}
+                                />
                             )
                         }
                     })}
                 </div>
+                <div style={{paddingTop: '75px'}}>
+                    <ComparePrice
+                        guitarLeftPrice={guitarLeftPrice}
+                        guitarRightPrice={guitarRightPrice}
+                    />
+                </div>
                 <div className='compare-right'>
-                    <h2>2</h2>
-                    {allGuitars.map(guitar => {
+                    {guitarRight.map(guitar => {
                         const { id, title, category, price, desc, img, brand, year } = guitar;
                         {
                             return (
-                                <article key={id} className='compareguitar-container'>
-                                    <div className='divright'>
-                                        <h3>{category}</h3>
-                                        <h4>{title}</h4>
-                                        <p>{price}</p>
-                                        <p>{desc}</p>
-                                        <p>{brand}</p>
-                                        <p>{year}</p> 
-                                    </div>
-                                
-                                </article>
+                                <CompareUnit 
+                                guitar={guitar}
+                                />
                             )
                         }
                     })}

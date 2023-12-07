@@ -5,8 +5,32 @@ import Menu from "./components/Menu";
 import Menu_data from "./components/Menu_data";
 import Categories from "./components/Categories";
 
+import MainPage from "./components/mainpage/MainPage";
+
+import { getGuitars } from './api'
+
 function App() {
-  const [selectedItem, setSelectedItem] = React.useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  //LOAD GUITARS
+  const [allGuitars, setAllGuitars] = useState([]);
+  const [guitarCache, setGuitarCache] = useState([]);
+  function loadData() {
+    React.useEffect(() => {
+      async function loadGuitars() {
+        try {
+          const data = await getGuitars()
+          setAllGuitars(data);
+          setGuitarCache(data);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+      loadGuitars();
+    }, [])
+  }
+  loadData();
+
   //MENU APP
   const allCategories = [
     "all",
@@ -116,6 +140,10 @@ function App() {
   return (
     <main id="main">
       <div className="appcolumn">
+        <MainPage 
+          allGuitars={allGuitars}
+          
+        />
         <br></br>
         <h3>Select your favourite guitars and give them a review!</h3>
         <br></br>
@@ -129,6 +157,10 @@ function App() {
             addToCollection={addToCollection}
             clearCollectionMenu={clearCollectionMenu}
             myCollection={myCollection}
+            allGuitars={allGuitars}
+            setAllGuitars={setAllGuitars}
+            guitarCache={guitarCache}
+            setGuitarCache={setGuitarCache}
             //Pass down functions to review component
             handleCheckGuitar={handleCheckGuitar}
             handleSubmitReview={handleSubmitReview}
